@@ -12,8 +12,8 @@ using Praktinis_Baigiamasis_Darbas.DataBase;
 namespace Praktinis_Baigiamasis_Darbas.Migrations
 {
     [DbContext(typeof(RegistryDbContext))]
-    [Migration("20230220174853_test5")]
-    partial class test5
+    [Migration("20230220191024_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -64,7 +64,7 @@ namespace Praktinis_Baigiamasis_Darbas.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("LocationId")
+                    b.Property<int?>("LocationID")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
@@ -85,7 +85,7 @@ namespace Praktinis_Baigiamasis_Darbas.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("LocationId");
+                    b.HasIndex("LocationID");
 
                     b.ToTable("Persons");
                 });
@@ -102,7 +102,7 @@ namespace Praktinis_Baigiamasis_Darbas.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("PersonId")
+                    b.Property<int?>("PersonID")
                         .HasColumnType("int");
 
                     b.Property<string>("Role")
@@ -119,23 +119,27 @@ namespace Praktinis_Baigiamasis_Darbas.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("PersonId");
+                    b.HasIndex("PersonID");
 
                     b.ToTable("Users");
                 });
 
             modelBuilder.Entity("Praktinis_Baigiamasis_Darbas.Person", b =>
                 {
-                    b.HasOne("Praktinis_Baigiamasis_Darbas.Location", null)
+                    b.HasOne("Praktinis_Baigiamasis_Darbas.Location", "Location")
                         .WithMany("Persons")
-                        .HasForeignKey("LocationId");
+                        .HasForeignKey("LocationID");
+
+                    b.Navigation("Location");
                 });
 
             modelBuilder.Entity("Praktinis_Baigiamasis_Darbas.User", b =>
                 {
-                    b.HasOne("Praktinis_Baigiamasis_Darbas.Person", null)
+                    b.HasOne("Praktinis_Baigiamasis_Darbas.Person", "Person")
                         .WithMany("Users")
-                        .HasForeignKey("PersonId");
+                        .HasForeignKey("PersonID");
+
+                    b.Navigation("Person");
                 });
 
             modelBuilder.Entity("Praktinis_Baigiamasis_Darbas.Location", b =>
