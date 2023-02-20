@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Praktinis_Baigiamasis_Darbas.DataBase;
 
@@ -11,9 +12,11 @@ using Praktinis_Baigiamasis_Darbas.DataBase;
 namespace Praktinis_Baigiamasis_Darbas.Migrations
 {
     [DbContext(typeof(RegistryDbContext))]
-    partial class RegistryDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230220175310_test7")]
+    partial class test7
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -61,9 +64,6 @@ namespace Praktinis_Baigiamasis_Darbas.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("LocationID")
-                        .HasColumnType("int");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -82,8 +82,6 @@ namespace Praktinis_Baigiamasis_Darbas.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("LocationID");
-
                     b.ToTable("Persons");
                 });
 
@@ -99,7 +97,7 @@ namespace Praktinis_Baigiamasis_Darbas.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("PersonID")
+                    b.Property<int?>("PersonId")
                         .HasColumnType("int");
 
                     b.Property<string>("Role")
@@ -116,32 +114,16 @@ namespace Praktinis_Baigiamasis_Darbas.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("PersonID");
+                    b.HasIndex("PersonId");
 
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("Praktinis_Baigiamasis_Darbas.Person", b =>
-                {
-                    b.HasOne("Praktinis_Baigiamasis_Darbas.Location", "Location")
-                        .WithMany("Persons")
-                        .HasForeignKey("LocationID");
-
-                    b.Navigation("Location");
-                });
-
             modelBuilder.Entity("Praktinis_Baigiamasis_Darbas.User", b =>
                 {
-                    b.HasOne("Praktinis_Baigiamasis_Darbas.Person", "Person")
+                    b.HasOne("Praktinis_Baigiamasis_Darbas.Person", null)
                         .WithMany("Users")
-                        .HasForeignKey("PersonID");
-
-                    b.Navigation("Person");
-                });
-
-            modelBuilder.Entity("Praktinis_Baigiamasis_Darbas.Location", b =>
-                {
-                    b.Navigation("Persons");
+                        .HasForeignKey("PersonId");
                 });
 
             modelBuilder.Entity("Praktinis_Baigiamasis_Darbas.Person", b =>

@@ -7,6 +7,8 @@
         public string Street { get; set; }
         public int HouseNr { get; set; }
         public int AppartmentNr { get; set; }
+        
+        public List<Person> Persons { get; set; }
 
         public Location(int id, string city, string street, int houseNr, int appartmentNr)
         {
@@ -15,6 +17,7 @@
             Street = street;
             HouseNr = houseNr;
             AppartmentNr = appartmentNr;
+            Persons = new List<Person>();
         }
     }
 }
