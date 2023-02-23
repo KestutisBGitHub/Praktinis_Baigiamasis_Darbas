@@ -5,18 +5,17 @@ namespace Praktinis_Baigiamasis_Darbas
     public class Location
     {
         public int Id { get; set; }
-        [Required(ErrorMessage = "* Required")]
+        //[Required(ErrorMessage = "* Required City")]
         public string City { get; set; }
-        [Required(ErrorMessage = "* Required")]
+        //[Required(ErrorMessage = "* Required Street")]
         public string Street { get; set; }
-        [Required(ErrorMessage = "* Required")]
-        public int HouseNr { get; set; }
-        [Required(ErrorMessage = "* Required")]
-        public int AppartmentNr { get; set; }
-        
-        public List<Person> Persons { get; set; }
+        //[Required(ErrorMessage = "* Required HouseNr")]
+        public string HouseNr { get; set; }
+        //[Required(ErrorMessage = "* Required AppartmentNr")]
+        public string AppartmentNr { get; set; }
+        public List<Person> Persons { get; private set; }
 
-        public Location(int id, string city, string street, int houseNr, int appartmentNr)
+        public Location(int id, string city, string street, string houseNr, string appartmentNr)
         {
             Id = id;
             City = city;
