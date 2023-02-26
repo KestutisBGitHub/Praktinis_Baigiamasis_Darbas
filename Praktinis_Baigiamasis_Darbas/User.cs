@@ -10,8 +10,8 @@ namespace Praktinis_Baigiamasis_Darbas
         //[Required(ErrorMessage = "* Required")]
         public string UserName { get; set; }
         //[Required(ErrorMessage = "* Required")]
-        public byte[] Password { get; set; }
-        public byte[] Salt { get; set; }
+        public string Password { get; set; }
+        //public byte[] Salt { get; set; }
         [DefaultValue("user")]
         public string Role { get; set; }
 
@@ -19,14 +19,14 @@ namespace Praktinis_Baigiamasis_Darbas
         public int PersonID { get; set; }
         public Person Person { get; set; }
 
-        //public User(string userName, byte[] password, byte[] salt, string role)
-        //{
-            
-        //    UserName = userName;
-        //    Password = password;
-        //    Salt = salt;
-        //    Role = role;
-            
-        //}
+        public User(string userName, string password, /*byte[] salt,*/ string role)
+        {
+
+            UserName = userName;
+            Password = password;
+            //Salt = salt;
+            Role = role;
+
+        }
     }
 }

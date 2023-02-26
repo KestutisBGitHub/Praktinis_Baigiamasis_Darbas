@@ -15,7 +15,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<RegistryDbContext>(options => 
     options.UseSqlServer(builder.Configuration.GetConnectionString("Database")));
 builder.Services.AddScoped<IRepository, DbRepository>();
-builder.Services.AddScoped<IUserService, UserService>();
+
 
 
 //mano
