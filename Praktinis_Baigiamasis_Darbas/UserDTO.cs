@@ -1,27 +1,31 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Praktinis_Baigiamasis_Darbas
 {
-    public class UserDTO
+    public class UserDto
     {
-        public int Id { get; set; }
-        [Required(ErrorMessage = "* Required")]
+        
+        //[Required(ErrorMessage = "* Required")]
         public string UserName { get; set; }
-        [Required(ErrorMessage = "* Required")]
+        //[Required(ErrorMessage = "* Required")]
         public string Password { get; set; }
-        public byte[] Salt { get; set; }
-        public string Role { get; set; }
+        //[DefaultValue("user")]
+       // public string Role { get; set; }
 
-        [ForeignKey("Person")]
-        public int PersonID { get; set; }
-        public Person Person { get; set; }
+      // [ForeignKey("Person")]
+      //  public int PersonID { get; set; }
+        //public PersonDTO Person { get; set; }
 
-        public UserDTO(int id, string userName)
+        public UserDto(string userName, string password /*, string role*/)
         {
-            Id = id;
+           
             UserName = userName;
- 
+            Password = password;
+            
+           // Role = role;
+
         }
     }
 }

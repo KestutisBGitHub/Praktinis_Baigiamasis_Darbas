@@ -5,7 +5,7 @@
 namespace Praktinis_Baigiamasis_Darbas.Migrations
 {
     /// <inheritdoc />
-    public partial class Initial : Migration
+    public partial class initialv01 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -18,8 +18,8 @@ namespace Praktinis_Baigiamasis_Darbas.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     City = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Street = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    HouseNr = table.Column<int>(type: "int", nullable: false),
-                    AppartmentNr = table.Column<int>(type: "int", nullable: false)
+                    HouseNr = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    AppartmentNr = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -37,7 +37,7 @@ namespace Praktinis_Baigiamasis_Darbas.Migrations
                     PersonalCode = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    LocationID = table.Column<int>(type: "int", nullable: true)
+                    LocationID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -46,7 +46,8 @@ namespace Praktinis_Baigiamasis_Darbas.Migrations
                         name: "FK_Persons_Locations_LocationID",
                         column: x => x.LocationID,
                         principalTable: "Locations",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -56,10 +57,10 @@ namespace Praktinis_Baigiamasis_Darbas.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     UserName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Password = table.Column<byte[]>(type: "varbinary(max)", nullable: false),
                     Salt = table.Column<byte[]>(type: "varbinary(max)", nullable: false),
                     Role = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PersonID = table.Column<int>(type: "int", nullable: true)
+                    PersonID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -68,7 +69,8 @@ namespace Praktinis_Baigiamasis_Darbas.Migrations
                         name: "FK_Users_Persons_PersonID",
                         column: x => x.PersonID,
                         principalTable: "Persons",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(

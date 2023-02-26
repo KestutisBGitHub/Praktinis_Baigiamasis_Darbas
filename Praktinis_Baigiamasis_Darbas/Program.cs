@@ -1,3 +1,7 @@
+using Microsoft.EntityFrameworkCore;
+using Praktinis_Baigiamasis_Darbas.DataBase;
+using Praktinis_Baigiamasis_Darbas.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -7,6 +11,14 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+//mano
+builder.Services.AddDbContext<RegistryDbContext>(options => 
+    options.UseSqlServer(builder.Configuration.GetConnectionString("Database")));
+builder.Services.AddScoped<IRepository, DbRepository>();
+builder.Services.AddScoped<IUserService, UserService>();
+
+
+//mano
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
